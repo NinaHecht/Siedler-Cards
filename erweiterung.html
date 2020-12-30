@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Siedler von Catan Karten 5 Spieler</title>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                font-weight: 400;
+            }
+            *:focus {
+                outline: none;
+            }
+            html {
+                font-family: 'Barlow', sans-serif;
+                height: 100%;
+            }
+            body {
+                min-height: 100%;
+            }
+            h1 {
+                padding: 20px 0 10px 0;
+            }
+            h2, .button-group {
+                padding: 30px 0 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+            button {
+                margin: 10px 2px;
+                padding: 10px 20px;
+                background: white;
+                border: 1px solid black;
+                transition: all 0.3s;
+            }
+            .content {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .cards {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            .card {
+                position: relative;
+                background-color: rgb(206, 95, 95);
+                height: 150px;
+                width: 100px;
+                margin: 10px 10px;
+                background-size: cover;
+            }
+            .card-quadrat {
+                height: 300px;
+                width: 300px;
+                margin-top: 30px;
+            }
+            .desc {
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-weight: 600;
+                color: white;
+            }
+            .num {
+                position: absolute;
+                bottom: -16px;
+                left: calc(50% - 16px);
+                border-radius: 50%;
+                border: 1px solid black;
+                background-color: white;
+                font-size: 20px;
+                padding: 3px 0;
+                text-align: center;
+                font-weight: 600;
+                width: 30px;
+            }
+            .add {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                font-weight: 600;
+                border-radius: 50%;
+                border: 1px solid black;
+                background-color: white;
+                font-size: 20px;
+                padding: 2px 0 4px 0;
+                text-align: center;
+                width: 30px;
+            }
+            .remove {
+                position: absolute;
+                bottom: 5px;
+                left: 5px;
+                font-weight: 600;
+                border-radius: 50%;
+                border: 1px solid black;
+                background-color: white;
+                font-size: 20px;
+                padding: 2px 0 4px 0;
+                text-align: center;
+                width: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>Deine Karten</h1>
+            <div class="cards">
+                <div id="holz" class="card" style="background-image: url(res/holz-min.jpg);">
+                    <div class="desc">Holz</div>
+                    <div class="num">0</div>
+                    <div onClick="addHolz()" class="add">+</div>
+                    <div onClick="removeHolz()" class="remove">-</div>
+                </div>
+                <div id="lehm" class="card" style="background-image: url(res/lehm-min.jpg);">
+                    <div class="desc">Lehm</div>
+                    <div class="num">0</div>
+                    <div onClick="addLehm()" class="add">+</div>
+                    <div onClick="removeLehm()" class="remove">-</div>
+                </div>
+                <div id="getreide" class="card" style="background-image: url(res/getreide-min.jpg);">
+                    <div class="desc">Getreide</div>
+                    <div class="num">0</div>
+                    <div onClick="addGetreide()" class="add">+</div>
+                    <div onClick="removeGetreide()" class="remove">-</div>
+                </div>
+                <div id="erz" class="card" style="background-image: url(res/erz-min.jpg);">
+                    <div class="desc">Erz</div>
+                    <div class="num">0</div>
+                    <div onClick="addErz()" class="add">+</div>
+                    <div onClick="removeErz()" class="remove">-</div>
+                </div>
+                <div id="schaf" class="card" style="background-image: url(res/schaf-min.jpg);">
+                    <div class="desc">Schaf</div>
+                    <div class="num">0</div>
+                    <div onClick="addSchaf()" class="add">+</div>
+                    <div onClick="removeSchaf()" class="remove">-</div>
+                </div>
+            </div>
+
+            <div id="schaf" class="card card-quadrat" style="background-image: url(res/baukosten-min.jpg);"></div>
+
+            <h2>Räuber</h2>
+            <button onClick="rauber()">Karte ziehen</button>
+
+            <h2>Entwicklungskarten</h2>
+            <button onClick="entwicklung()">Entwicklungskarte ziehen</button>
+
+            <div class="cards">
+                <div id="ritter" class="card" style="background-image: url(res/ritter-min.jpg);">
+                    <div class="num">0</div>
+                    <div onClick="removeRitter()" class="remove">-</div>
+                </div>
+                <div id="siegpunkt" class="card" style="background-image: url(res/siegpunkt-min.jpg);">
+                    <div class="num">0</div>
+                    <div onClick="removeSiegpunkt()" class="remove">-</div>
+                </div>
+                <div id="monopol" class="card" style="background-image: url(res/monopol-min.jpg);">
+                    <div class="num">0</div>
+                    <div onClick="removeMonopol()" class="remove">-</div>
+                </div>
+                <div id="straßenbau" class="card" style="background-image: url(res/strasenbau-min.jpg);">
+                    <div class="num">0</div>
+                    <div onClick="removeStraßenbau()" class="remove">-</div>
+                </div>
+                <div id="erfindung" class="card" style="background-image: url(res/erfindung-min.jpg);">
+                    <div class="num">0</div>
+                    <div onClick="removeErfindung()" class="remove">-</div>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button id="removeritter" onClick="remove('ritter')">Ritter entfernen</button>
+                <button id="removesiegpunkt" onClick="remove('siegpunkt')">Siegpunkt entfernen</button>
+                <button id="removemonopol" onClick="remove('monopol')">Monopol entfernen</button>
+                <button id="removestraßenbau" onClick="remove('straßenbau')">Straßenbau entfernen</button>
+                <button id="removeerfindung" onClick="remove('erfindung')">Erfindung entfernen</button>
+            </div>
+
+        </div>
+    </body>
+
+
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        Array.prototype.random = function () {
+            return this[Math.floor((Math.random()*this.length))];
+        }
+
+        let entwicklungskarten = ['ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'ritter', 'straßenbau', 'monopol', 'erfindung', 'straßenbau', 'monopol', 'erfindung', 'straßenbau', 'monopol', 'erfindung', 'siegpunkt', 'siegpunkt', 'siegpunkt', 'siegpunkt', 'siegpunkt'];
+        
+        let holz = 0;
+        let lehm = 0;
+        let getreide = 0;
+        let erz = 0;
+        let schaf = 0;
+
+        let ritter = 0;
+        let siegpunkt = 0;
+        let monopol = 0;
+        let straßenbau = 0;
+        let erfindung = 0;
+
+        let karten = [];
+
+        function rauber() {
+            let karte = karten.random();
+            
+            karte = karte.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                return letter.toUpperCase();
+            });
+            //remove from karten / call remove function
+            alert(karte);
+
+            let action = '(remove' + karte + '())';
+            eval(action);
+        }
+
+        function remove(entwicklung) {
+            let index = entwicklungskarten.indexOf(entwicklung);
+            entwicklungskarten.splice(index, 1);
+            $('#remove'+entwicklung).css('background-color', 'rgb(142, 255, 176)');
+            setTimeout(function(){
+                $('#remove'+entwicklung).css('background-color', 'white');
+            }, 3000)
+        }
+
+        function entwicklung() {
+            let entwicklung = entwicklungskarten.random();
+            let index = entwicklungskarten.indexOf(entwicklung);
+            entwicklungskarten.splice(index, 1);
+            let action = '(add' + entwicklung + '())';
+            eval(action);
+        }
+
+        function addritter() {
+            ritter ++;
+            $('#ritter .num').html(ritter);
+        }
+
+        function removeRitter() {
+            if(ritter > 0){
+                ritter --;
+                $('#ritter .num').html(ritter);
+            }
+        }
+
+        function addsiegpunkt() {
+            siegpunkt ++;
+            $('#siegpunkt .num').html(siegpunkt);
+        }
+
+        function removeSiegpunkt() {
+            if(siegpunkt > 0){
+                siegpunkt --;
+                $('#siegpunkt .num').html(siegpunkt);
+            }
+        }
+
+        function addmonopol() {
+            monopol ++;
+            $('#monopol .num').html(monopol);
+        }
+
+        function removeMonopol() {
+            if(monopol > 0){
+                monopol --;
+                $('#monopol .num').html(monopol);
+            }
+        }
+
+        function adderfindung() {
+            erfindung ++;
+            $('#erfindung .num').html(erfindung);
+        }
+
+        function removeErfindung() {
+            if(erfindung > 0){
+                erfindung --;
+                $('#erfindung .num').html(erfindung);
+            }
+        }
+
+        function addstraßenbau() {
+            straßenbau ++;
+            $('#straßenbau .num').html(straßenbau);
+        }
+
+        function removeStraßenbau() {
+            if(straßenbau > 0){
+                straßenbau --;
+                $('#straßenbau .num').html(straßenbau);
+            }
+        }
+
+        function addHolz(){
+            holz ++;
+            $('#holz .num').html(holz);
+            karten.push('holz');
+        }
+
+        function removeHolz(){
+            if(holz > 0){
+                holz --;
+                $('#holz .num').html(holz);
+
+                let index = karten.indexOf('holz');
+                karten.splice(index, 1);
+            }
+        }
+
+        function addLehm(){
+            lehm ++;
+            $('#lehm .num').html(lehm);
+            karten.push('lehm');
+        }
+
+        function removeLehm(){
+            if(lehm > 0){
+                lehm --;
+                $('#lehm .num').html(lehm);
+
+                let index = karten.indexOf('lehm');
+                karten.splice(index, 1);
+            }
+        }
+
+        function addGetreide(){
+            getreide ++;
+            $('#getreide .num').html(getreide);
+            karten.push('getreide');
+        }
+
+        function removeGetreide(){
+            if(getreide > 0){
+                getreide --;
+                $('#getreide .num').html(getreide);
+                
+                let index = karten.indexOf('getreide');
+                karten.splice(index, 1);
+            }
+        }
+
+        function addErz(){
+            erz ++;
+            $('#erz .num').html(erz);
+            karten.push('erz');
+        }
+
+        function removeErz(){
+            if(erz > 0){
+                erz --;
+                $('#erz .num').html(erz);
+                
+                let index = karten.indexOf('erz');
+                karten.splice(index, 1);
+            }
+        }
+
+        function addSchaf(){
+            schaf ++;
+            $('#schaf .num').html(schaf);
+            karten.push('schaf');
+        }
+
+        function removeSchaf(){
+            if(schaf > 0){
+                schaf --;
+                $('#schaf .num').html(schaf);
+
+                let index = karten.indexOf('schaf');
+                karten.splice(index, 1);
+            }
+        }
+
+    </script>
+</html>

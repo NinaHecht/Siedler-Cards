@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Siedler von Catan Karten 5+ Spieler</title>
+        <title>Siedler von Catan Karten</title>
 
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -55,13 +55,13 @@
                 background-color: rgb(206, 95, 95);
                 height: 150px;
                 width: 100px;
-                margin: 10px 10px;
+                margin: 10px 10px 20px 10px;
                 background-size: cover;
             }
             .card-quadrat {
                 height: 300px;
                 width: 300px;
-                margin-top: 30px;
+                margin-top: 10px;
             }
             .desc {
                 position: absolute;
@@ -109,6 +109,23 @@
                 text-align: center;
                 width: 30px;
             }
+            .dices {
+                margin: 30px 0;
+                position: relative;
+            }
+            .dice {
+                font-size: 60px;
+                font-weight: 100;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-55%);
+            }
+            #dice1 {
+                left: -75px
+            }
+            #dice2 {
+                right: -75px
+            }
         </style>
     </head>
     <body>
@@ -147,7 +164,13 @@
                 </div>
             </div>
 
-            <div id="schaf" class="card card-quadrat" style="background-image: url(res/baukosten-min.jpg);"></div>
+            <div class="dices">
+                <div id="dice1" class="dice">&#x2685;</div>
+                <button id="rolldice" onClick="rollDice()">Würfeln</button>
+                <div id="dice2" class="dice">&#x2685;</div>
+            </div>
+
+            <div class="card card-quadrat" style="background-image: url(res/baukosten-min.jpg);"></div>
 
             <h2>Räuber</h2>
             <button id="rauber" onClick="rauber()">Zufällige Rohstoffkarte ziehen</button>
@@ -179,7 +202,7 @@
             </div>
             
             <div class="button-group">
-                <button id="adjutsritter" onClick="adjustEntwicklungen('ritter')">Ritter entfernen</button>
+                <button id="adjustritter" onClick="adjustEntwicklungen('ritter')">Ritter entfernen</button>
                 <button id="adjustsiegpunkt" onClick="adjustEntwicklungen('siegpunkt')">Siegpunkt entfernen</button>
                 <button id="adjustmonopol" onClick="adjustEntwicklungen('monopol')">Monopol entfernen</button>
                 <button id="adjuststraßenbau" onClick="adjustEntwicklungen('straßenbau')">Straßenbau entfernen</button>
@@ -275,6 +298,16 @@
             entwicklungskarten.splice(index, 1);
 
             console.log(entwicklungskarten);
+        }
+
+        function rollDice(){
+            buttonPressedFeedback('rolldice');
+
+            let val1 = Math.floor(Math.random() * 6);
+            let val2 = Math.floor(Math.random() * 6);
+
+            $('#dice1').html("&#x268" + val1 + "; ");
+            $('#dice2').html("&#x268" + val2 + "; ");
         }
 
         function buttonPressedFeedback(id){

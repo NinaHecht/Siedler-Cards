@@ -1,0 +1,31 @@
+* {
+    font-weight: 500;
+}
+body {
+    background-color: white;
+    color: rgb(16, 16, 16);
+}
+button, .button {
+    background: white;
+    border: 1px solid rgb(16, 16, 16);
+    color: rgb(16, 16, 16);
+}
+.button--light {
+    background: rgb(16, 16, 16);
+    border: 1px solid rgb(16, 16, 16);
+    color: white;
+}
+.card__image {
+    background-color: rgb(30, 30, 30);
+}
+.circle {
+    border: 1px solid rgb(16, 16, 16);
+    background-color: white;
+}
+.desc {
+    color: white;
+}
+footer {
+    color: white;
+    background-color:rgb(16, 16, 16);
+}

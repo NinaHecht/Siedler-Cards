@@ -56,6 +56,12 @@ button, .button {
 .button--feedback {
     background-color: rgb(82, 113, 92);
 }
+.button--secondary {
+    margin-bottom: 0;
+    border: 1.2px solid rgb(16, 16, 16);
+    color: rgb(16, 16, 16);
+    background-color: white;
+}
 .costs {
     margin-top: 15px;
 }
@@ -112,9 +118,6 @@ button, .button {
     justify-content: center;
     align-items: center;
 }
-/* .card__desc {
-    text-align: center;
-} */
 .card__num {
     padding: 3px 0;
     right: 0;

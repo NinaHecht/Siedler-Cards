@@ -121,11 +121,10 @@
                 </div>
                 <div id="siegpunkt" class="card" style="background-image: url(../res/img/siegpunkt-min.jpg);">
                     <div class="circle circle--num">0</div>
-                    <div onClick="removeEntwicklung('siegpunkt')" class="circle circle--remove">-</div>
                 </div>
                 <div id="monopol" class="card" style="background-image: url(../res/img/monopol-min.jpg);">
                     <div class="circle circle--num">0</div>
-                    <div onClick="removeEntwicklung('monopol')()" class="circle circle--remove">-</div>
+                    <div onClick="removeEntwicklung('monopol')" class="circle circle--remove">-</div>
                 </div>
                 <div id="straßenbau" class="card" style="background-image: url(../res/img/strasenbau-min.jpg);">
                     <div class="circle circle--num">0</div>
@@ -147,7 +146,8 @@
 
         </div>
         <footer>
-            <span>Standard > bis 4 Spieler > Dark Mode</span>
+            <span>Standard > bis 4 Spieler > Dark Mode</span><br>
+            <button class="button button--secondary" onClick="resetCookies()">Reset</button>
         </footer>
     </body>
 
@@ -156,6 +156,7 @@
         var entwicklungskarten = ["ritter", "siegpunkt", "erfindung", "siegpunkt", "ritter", "ritter", "siegpunkt", "ritter", "ritter", "siegpunkt", "erfindung", "ritter", "straßenbau", "ritter", "ritter", "ritter", "straßenbau", "monopol", "ritter", "monopol", "ritter", "ritter", "ritter", "ritter", "siegpunkt"];
     </script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script src="../res/script.js"></script>
     
 </html>

@@ -15,6 +15,14 @@ button, .button {
     border: 1px solid rgb(16, 16, 16);
     color: white;
 }
+.button--secondary {
+    border: 1.2px solid white;
+    color: white;
+    background-color: rgb(16, 16, 16);
+}
+.cost {
+    background: rgb(30, 30, 30);
+}
 .card__image {
     background-color: rgb(30, 30, 30);
 }

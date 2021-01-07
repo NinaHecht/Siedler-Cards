@@ -27,11 +27,71 @@ let ritter = 0;
 
 let siegpunkte = 2;
 
+$(document).ready(function(){
+    rohstoffSetup('holz');
+    rohstoffSetup('lehm');
+    rohstoffSetup('getreide');
+    rohstoffSetup('erz');
+    rohstoffSetup('schaf');
+
+    entwicklungenSetup('ritter');
+    entwicklungenSetup('siegpunkt');
+    entwicklungenSetup('monopol');
+    entwicklungenSetup('straßenbau');
+    entwicklungenSetup('erfindung');
+
+    figurenSetup('straße');
+    figurenSetup('siedlung');
+    figurenSetup('stadt');
+
+    if(Cookies.get('ritterplayed')) { 
+        ritter = Cookies.get('ritterplayed')
+        $('#ritter .circle--played').html(ritter);
+    }
+
+    if(Cookies.get('siegpunkte')) { 
+        siegpunkte = Cookies.get('siegpunkte')
+        $('#siegpunkte').html(siegpunkte);
+    }
+
+    if(Cookies.get('entwicklungen')) {
+        entwicklungskarten = Cookies.get('entwicklungen').split(',');
+        console.log(entwicklungskarten);
+    }
+})
+
+function figurenSetup(figur) {
+    if(Cookies.get(figur)) { 
+        figuren[figur] = Cookies.get(figur); 
+        $('#'+figur+' .card__num').html(figuren[figur]);
+    }
+}
+
+function entwicklungenSetup(entwicklung) {
+    if(Cookies.get(entwicklung)) { 
+        entwicklungen[entwicklung] = Cookies.get(entwicklung); 
+        $('#'+entwicklung+' .circle--num').html(entwicklungen[entwicklung]);
+    }
+}
+
+function rohstoffSetup(rohstoff) {
+    if(Cookies.get(rohstoff)) { 
+        rohstoffe[rohstoff] = Cookies.get(rohstoff); 
+        $('#'+rohstoff+' .circle--num').html(rohstoffe[rohstoff]);
+
+        for(let i = 0; i < rohstoffe[rohstoff]; i++) {
+            karten.push(rohstoff);
+        }
+    }
+}
+
 function addRohstoff(rohstoff){
     rohstoffe[rohstoff] ++;
     $('#'+rohstoff+' .circle--num').html(rohstoffe[rohstoff]);
 
     karten.push(rohstoff);
+
+    Cookies.set(rohstoff, rohstoffe[rohstoff], { expires: 1 });
 }
 
 function removeRohstoff(rohstoff){
@@ -41,6 +101,8 @@ function removeRohstoff(rohstoff){
 
         let index = karten.indexOf(rohstoff);
         karten.splice(index, 1);
+
+        Cookies.set(rohstoff, rohstoffe[rohstoff], { expires: 1 });
     }
 }
 
@@ -49,6 +111,8 @@ function randomEntwicklung() {
 
     let index = entwicklungskarten.indexOf(entwicklung);
     entwicklungskarten.splice(index, 1);
+
+    Cookies.set('entwicklungen', entwicklungskarten, { expires: 1 });
 
     addEntwicklung(entwicklung);
 
@@ -86,18 +150,25 @@ function buyEntwicklung() {
 function addEntwicklung(entwicklung) {
     entwicklungen[entwicklung] ++;
     $('#'+entwicklung+' .circle--num').html(entwicklungen[entwicklung]);
+
+    Cookies.set(entwicklung, entwicklungen[entwicklung], { expires: 1 });
 }
 
 function removeEntwicklung(entwicklung) {
     if(entwicklungen[entwicklung] > 0){
         entwicklungen[entwicklung] --;
         $('#'+entwicklung+' .circle--num').html(entwicklungen[entwicklung]);
+
+        Cookies.set(entwicklung, entwicklungen[entwicklung], { expires: 1 });
+
         if(entwicklung == 'ritter'){
             ritter ++;
             $('#'+entwicklung+' .circle--played').html(ritter);
             if(ritter >= 3){
                 alert('Hat kein anderer Spieler bereits '+ritter+' oder mehr Ritter ausgespielt, so erhälst du die Rittermacht. \n\n2 Siegpunkte!');
             }
+
+            Cookies.set('ritterplayed', ritter, { expires: 1 });
         }
     }
 }
@@ -121,6 +192,8 @@ function adjustEntwicklungen(entwicklung) {
 
     let index = entwicklungskarten.indexOf(entwicklung);
     entwicklungskarten.splice(index, 1);
+
+    Cookies.set('entwicklungen', entwicklungskarten, { expires: 1 });
 }
 
 function rollDice(){
@@ -215,16 +288,46 @@ function buyStadt() {
 function addFigur(figur) {
     figuren[figur] ++;
     $('#'+figur+' .card__num').html(figuren[figur]);
+
+    Cookies.set(figur, figuren[figur], { expires: 1 });
 }
 
 function removeFigur(figur) {
     if(figuren[figur] > 0){
         figuren[figur] --;
         $('#'+figur+' .card__num').html(figuren[figur]);
+
+        Cookies.set(figur, figuren[figur], { expires: 1 });
     }
 }
 
 function addSiegpunkt() {
     siegpunkte ++;
     $('#siegpunkte').html(siegpunkte);
+
+    Cookies.set('siegpunkte', siegpunkte, { expires: 1 });
+}
+
+function resetCookies() {
+    Cookies.remove('holz');
+    Cookies.remove('lehm');
+    Cookies.remove('getreide');
+    Cookies.remove('holz');
+    Cookies.remove('erz');
+
+    Cookies.remove('ritter');
+    Cookies.remove('siegpunkt');
+    Cookies.remove('monopol');
+    Cookies.remove('straßenbau');
+    Cookies.remove('erfindung');
+
+    Cookies.remove('straße');
+    Cookies.remove('siedlung');
+    Cookies.remove('stadt');
+
+    Cookies.remove('ritterplayed');
+    Cookies.remove('siegpunkte');
+    Cookies.remove('entwicklungen');
+
+    location.reload();
 }

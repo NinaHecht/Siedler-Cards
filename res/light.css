@@ -20,6 +20,13 @@ button, .button {
     color: white;
     background-color: rgb(16, 16, 16);
 }
+.spacer {
+    border-top: 1px solid rgb(16, 16, 16);
+    border-bottom: 1px solid rgb(16, 16, 16);
+}
+.spacer--bottom {
+    border-bottom: 1px solid rgb(16, 16, 16);
+}
 .cost {
     background: rgb(30, 30, 30);
 }

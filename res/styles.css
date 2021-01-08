@@ -17,7 +17,7 @@ body {
 h1 {
     padding: 20px 0 10px 0;
 }
-h2, .button-group {
+h2 {
     padding: 30px 0 15px 0;
     width: 100%;
     text-align: center;
@@ -83,6 +83,19 @@ button, .button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+.spacer {
+    width: 100%;
+    padding: 15px 0;
+    margin: 15px 0;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+.spacer--bottom {
+    width: 100%;
+    padding-bottom: 30px;
+    border-bottom: 1px solid white;
 }
 .cards {
     display: flex;
@@ -165,7 +178,6 @@ button, .button {
     padding: 2px 0 4px 0;
 }
 .dices {
-    margin: 30px 0;
     position: relative;
 }
 .dice {
@@ -176,10 +188,12 @@ button, .button {
     transform: translateY(-55%);
 }
 #dice1 {
-    left: -75px
+    left: 50%;
+    transform: translate(-120px, -55%);
 }
 #dice2 {
-    right: -75px
+    right: 50%;
+    transform: translate(120px, -55%);
 }
 footer {
     text-align: center;

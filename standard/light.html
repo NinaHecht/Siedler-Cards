@@ -45,10 +45,9 @@
                 </div>
             </div>
 
-            <div class="dices">
-                <div id="dice1" class="dice">&#x2685;</div>
-                <button id="rolldice" onClick="rollDice()">Würfeln</button>
-                <div id="dice2" class="dice">&#x2685;</div>
+            <div class="spacer">
+                <span>Räuber:</span>
+                <button id="rauber" onClick="rauber()">Zufällige Rohstoffkarte ziehen</button>
             </div>
 
             <div class="cards">
@@ -97,26 +96,30 @@
                 </div>
             </div>
 
+            <div class="spacer">
+                <div class="dices">
+                    <div id="dice1" class="dice">&#x2685;</div>
+                    <button id="rolldice" onClick="rollDice()">Würfeln</button>
+                    <div id="dice2" class="dice">&#x2685;</div>
+                </div>
+            </div>
+
             <h2>Deine Siegpunkte: <span id="siegpunkte">2</span></h2>
 
-            <div class="button-group">
+            <div>
                 <button id="rittermacht" onClick="toggleRittermacht()">Rittermacht</button>
                 <button id="handelsstraße" onClick="toggleHandelsstraße()">Handelsstraße</button>
             </div>
 
-            <h2>Räuber</h2>
-            <button id="rauber" onClick="rauber()">Zufällige Rohstoffkarte ziehen</button>
+            <div class="spacer--bottom"></div>
 
             <h2>Entwicklungskarten</h2>
 
-            <div class="button-group">
-                <button id="pullentwicklung" onClick="pullEntwicklung()">Entwicklungskarte ziehen</button>
-                <button id="buyentwicklung" onClick="buyEntwicklung()">Entwicklungskarte kaufen &nbsp;
-                    <img class="button__cost" src="../res/img/getreide-min.png">
-                    <img class="button__cost" src="../res/img/schaf-min.png">
-                    <img class="button__cost" src="../res/img/stein-min.png">
-                </button>
-            </div>
+            <button id="buyentwicklung" onClick="buyEntwicklung()">Entwicklungskarte kaufen &nbsp;
+                <img class="button__cost" src="../res/img/getreide-min.png">
+                <img class="button__cost" src="../res/img/schaf-min.png">
+                <img class="button__cost" src="../res/img/stein-min.png">
+            </button>
 
             <div class="cards">
                 <div id="ritter" class="card" style="background-image: url(../res/img/ritter-min.jpg);">
@@ -141,13 +144,15 @@
                 </div>
             </div>
             
-            <div class="button-group">
+            <div>
                 <button id="adjustritter" onClick="adjustEntwicklungen('ritter')">Ritter entfernen</button>
                 <button id="adjustsiegpunkt" onClick="adjustEntwicklungen('siegpunkt')">Siegpunkt entfernen</button>
                 <button id="adjustmonopol" onClick="adjustEntwicklungen('monopol')">Monopol entfernen</button>
                 <button id="adjuststraßenbau" onClick="adjustEntwicklungen('straßenbau')">Straßenbau entfernen</button>
                 <button id="adjusterfindung" onClick="adjustEntwicklungen('erfindung')">Erfindung entfernen</button>
             </div>
+
+            <div class="spacer--bottom"></div>
 
         </div>
         <footer>

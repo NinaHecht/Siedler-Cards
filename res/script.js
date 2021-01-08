@@ -139,12 +139,6 @@ function randomEntwicklung() {
     }
 }
 
-function pullEntwicklung() {
-    buttonPressedFeedback('pullentwicklung');
-
-    randomEntwicklung();
-}
-
 function buyEntwicklung() {
     let missing = false;
 

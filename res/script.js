@@ -22,9 +22,9 @@ figuren['siedlung'] = 3;
 figuren['stadt'] = 4;
 
 let karten = [];
-
 let ritter = 0;
-
+let rittermacht = false;
+let handelsstraße = false;
 let siegpunkte = 2;
 
 $(document).ready(function(){
@@ -57,6 +57,24 @@ $(document).ready(function(){
     if(Cookies.get('entwicklungen')) {
         entwicklungskarten = Cookies.get('entwicklungen').split(',');
         console.log(entwicklungskarten);
+    }
+
+    if(Cookies.get('rittermacht')) {
+        if(Cookies.get('rittermacht') == 'true') {
+            rittermacht = true;
+            $('#rittermacht').addClass('button--light');
+        }else{
+            rittermacht = false;
+        }
+    }
+
+    if(Cookies.get('handelsstraße')) {
+        if(Cookies.get('handelsstraße') == 'true') {
+            handelsstraße = true;
+            $('#handelsstraße').addClass('button--light');
+        }else{
+            handelsstraße = false;
+        }
     }
 })
 
@@ -326,8 +344,58 @@ function resetCookies() {
     Cookies.remove('stadt');
 
     Cookies.remove('ritterplayed');
+    Cookies.remove('rittermacht');
+    Cookies.remove('handelsstraße');
     Cookies.remove('siegpunkte');
     Cookies.remove('entwicklungen');
 
     location.reload();
+}
+
+function toggleRittermacht() {
+    if(ritter >= 3){
+        if(rittermacht){
+            $('#rittermacht').removeClass('button--light');
+
+            siegpunkte = siegpunkte - 2;
+            $('#siegpunkte').html(siegpunkte);
+            Cookies.set('siegpunkte', siegpunkte, { expires: 1 });
+
+            rittermacht = false;
+            Cookies.set('rittermacht', rittermacht, { expires: 1 });
+        }else{
+            $('#rittermacht').addClass('button--light');
+
+            siegpunkte = Number(siegpunkte) + 2;
+            $('#siegpunkte').html(siegpunkte);
+            Cookies.set('siegpunkte', siegpunkte, { expires: 1 });
+
+            rittermacht = true;
+            Cookies.set('rittermacht', rittermacht, { expires: 1 });
+        }
+    }
+}
+
+function toggleHandelsstraße() {
+    if(figuren['straße'] <= 9){
+        if(handelsstraße){
+            $('#handelsstraße').removeClass('button--light');
+
+            siegpunkte = siegpunkte - 2;
+            $('#siegpunkte').html(siegpunkte);
+            Cookies.set('siegpunkte', siegpunkte, { expires: 1 });
+            
+            handelsstraße = false;
+            Cookies.set('handelsstraße', handelsstraße, { expires: 1 });
+        }else{
+            $('#handelsstraße').addClass('button--light');
+
+            siegpunkte = Number(siegpunkte) + 2;
+            $('#siegpunkte').html(siegpunkte);
+            Cookies.set('siegpunkte', siegpunkte, { expires: 1 });
+
+            handelsstraße = true;
+            Cookies.set('handelsstraße', handelsstraße, { expires: 1 });
+        }
+    }
 }

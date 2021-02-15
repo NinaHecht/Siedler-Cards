@@ -328,7 +328,7 @@ function resetCookies() {
     Cookies.remove('holz');
     Cookies.remove('lehm');
     Cookies.remove('getreide');
-    Cookies.remove('holz');
+    Cookies.remove('schaf');
     Cookies.remove('erz');
 
     Cookies.remove('ritter');

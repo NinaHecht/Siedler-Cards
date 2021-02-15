@@ -182,6 +182,10 @@ function removeEntwicklung(entwicklung) {
 
             Cookies.set('ritterplayed', ritter, { expires: 1 });
         }
+        if(entwicklung == 'straßenbau'){
+            removeFigur('straße');
+            removeFigur('straße');
+        }
     }
 }
 
